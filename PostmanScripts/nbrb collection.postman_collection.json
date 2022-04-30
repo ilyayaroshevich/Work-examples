@@ -1,0 +1,224 @@
+{
+	"info": {
+		"_postman_id": "c144102f-371a-424e-bbb4-f56e29daefb6",
+		"name": "nbrb collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Full list of currencies",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://www.nbrb.by/api/exrates/currencies",
+					"protocol": "https",
+					"host": [
+						"www",
+						"nbrb",
+						"by"
+					],
+					"path": [
+						"api",
+						"exrates",
+						"currencies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Belgian franc",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check BEF\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.Cur_Abbreviation).to.eql('BEF');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://www.nbrb.by/api/exrates/rates/BEF?parammode=2&ondate=2001-12-30&periodicity=0",
+					"protocol": "https",
+					"host": [
+						"www",
+						"nbrb",
+						"by"
+					],
+					"path": [
+						"api",
+						"exrates",
+						"rates",
+						"BEF"
+					],
+					"query": [
+						{
+							"key": "parammode",
+							"value": "2"
+						},
+						{
+							"key": "ondate",
+							"value": "2001-12-30"
+						},
+						{
+							"key": "periodicity",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get RUB",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check date RUB\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.Date).to.eql('2018-12-03T00:00:00');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check russian language RUB\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.Cur_Name).to.eql('Российских рублей');\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://www.nbrb.by/api/exrates/rates/RUB?parammode=2&ondate=2018-12-03&periodicity=0",
+					"protocol": "https",
+					"host": [
+						"www",
+						"nbrb",
+						"by"
+					],
+					"path": [
+						"api",
+						"exrates",
+						"rates",
+						"RUB"
+					],
+					"query": [
+						{
+							"key": "parammode",
+							"value": "2"
+						},
+						{
+							"key": "ondate",
+							"value": "2018-12-03"
+						},
+						{
+							"key": "periodicity",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BYN to USD dynamics",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"check EndDate\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"2019-02-10T00:00:00\");\r",
+							"    pm.expect(pm.response.text()).to.include(\"2019-02-10T00:00:00\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://www.nbrb.by/api/exrates/rates/dynamics/145?startdate=2018-12-01&enddate=2019-02-10",
+					"protocol": "https",
+					"host": [
+						"www",
+						"nbrb",
+						"by"
+					],
+					"path": [
+						"api",
+						"exrates",
+						"rates",
+						"dynamics",
+						"145"
+					],
+					"query": [
+						{
+							"key": "parammode",
+							"value": "2",
+							"disabled": true
+						},
+						{
+							"key": "startdate",
+							"value": "2018-12-01"
+						},
+						{
+							"key": "enddate",
+							"value": "2019-02-10"
+						},
+						{
+							"key": "periodicity",
+							"value": "0",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
