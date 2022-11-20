@@ -23,7 +23,7 @@
   "Actual result":"The error 'DoesNotExist' at /course/new/ shows up (if you go back to the 'Course' page, you will see that the course has been created.)",
   "Expected result":"The course is created without any errors"
 }
-
+//
 {
   "Bug_id":"2",
   "Priority":"Normal",
@@ -48,7 +48,7 @@
   "Actual result":"An error appears 'ValidationError at /courses/new/','Chosen days of week do not include start day of week' and course created",
   "Expected result":"An error as in action result but course didn't create"
 }
-
+//
 {
   "Bug_id":"3",
   "Priority":"Normal",

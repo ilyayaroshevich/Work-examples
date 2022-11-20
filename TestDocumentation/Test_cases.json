@@ -24,7 +24,7 @@
   },
   "Expected result":"The course has been created and is displayed in the schedule"
 }
-
+//
 {
   "TestCase_id":"2",
   "Title":"Save changes course",
@@ -51,7 +51,7 @@
   },
   "Expected result":"The course has been changed and is displayed in the schedule with new data"
 }
-
+//
 {
   "TestCase_id":"3",
   "Title":"Delete course",
@@ -67,7 +67,7 @@
   },
   "Expected result":"'Is active' field has been changed from 'True' on 'False'"
 }
-
+//
 {
   "TestCase_id":"4",
   "Title":"Creating a new course (Case with invalid data '1' 'Number of lessons' field)",
@@ -85,7 +85,7 @@
   },
   "Expected result":"An error with the tooltip 'Enter a number between 2 and 50' appeared. The course was not created"
 }
-
+//
 {
   "TestCase_id":"5",
   "Title":"Creating new course with empty 'Course name' field",
@@ -102,7 +102,7 @@
   },
   "Expected result":"There is an alert 'Not all require fields filled, course doesn't created'. The course was not created"
 }
-
+//
 {
   "TestCase_id":"6",
   "Title":"GET /api/v1/courses/ (As a SuperAdmin)",
@@ -134,7 +134,7 @@
 		}
   },
 }
-
+//
 {
   "TestCase_id":"7",
   "Title":"POST /api/v1/courses/ (As a SuperAdmin)",
