@@ -142,7 +142,7 @@
   {
     "1":{
   "days_of_week": [
-    today day, 7
+    2, 7
   ],
   "course_name": "any 1 lowercase letter",
   "start_date": "today date",
@@ -153,8 +153,8 @@
   "number_of_lessons": 2,
   "course_type": "1 letter",
   "is_active": true,
-"teacher": existing teacher id,
-  "location": existing location id,
+  "teacher": 1,
+  "location": 1,
   "start_time_options": null
 		}
   },
