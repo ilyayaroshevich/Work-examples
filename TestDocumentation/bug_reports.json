@@ -1,0 +1,82 @@
+{
+  "Bug_id":"1",
+  "Priority":"High",
+  "Summary":"Course. Create. Error when creating a course with valid data.(Course created)",
+  "Preconditions":{
+	"1":"Sign in SuperAdmin permissions",
+	"2":"Prepare test data"
+  },
+  "Steps to reproduce":
+  {
+    "1":"Open the 'Courses' page",
+	"2":"Click on the 'Create course' button",
+	"3":"Enter a course name of length 50 with Russian and Latin characters, lowercase and uppercase characters, with a number '9'  and special character (- ! # $ % & ‘ * + – / = ? ^ _ ` . { | } ~)",
+	"4":"Click on 'Teacher' field and choose any existing teacher", 
+	"5":"Choose tomorrow date in 'Course start date' field",
+	"6":"Mark tomorrow and another day name in 'Days of the week' field",
+	"7":"Choose '2'  in 'Lesson duration' field",
+	"8":"Click on 'Location' field and choose any existing location",
+	"9":"Click on 'Start time' field and choose '17:00' time",
+	"10":"Enter '25' in 'Number of lessons' field",
+	"11":"Click on the 'Add' button"
+  },
+  "Actual result":"The error 'DoesNotExist' at /course/new/ shows up (if you go back to the 'Course' page, you will see that the course has been created.)",
+  "Expected result":"The course is created without any errors"
+}
+
+{
+  "Bug_id":"2",
+  "Priority":"Normal",
+  "Summary":"Course. Create. Course is creating with different 'Course start date' and 'Days of the week'",
+  "Preconditions":
+  {
+	"1":"Sign in SuperAdmin permissions",
+	"2":"Prepare test data"
+  },
+  "Steps to reproduce":
+  {
+    "1":"Click on 'add new course' button",
+	"2":"Enter 't' in 'course name' field",
+	"3":"Enter any date in 'course start date' field ",
+	"4":"Choose any days of the week except days selected in point 3", 
+	"5":"Choose any lesson duration in 'Lesson duration' field",
+	"6":"Choose any location in 'location' field",
+	"7":"Choose any start time in 'Start time' field (if you choose 2 or 3 lesson duration you need choose start time in range [8:00 : 19:00])",
+	"8":"Enter number of lessons in range [2;50]",
+	"9":"Click on the 'Add' button"
+  },
+  "Actual result":"An error appears 'ValidationError at /courses/new/','Chosen days of week do not include start day of week' and course created",
+  "Expected result":"An error as in action result but course didn't create"
+}
+
+{
+  "Bug_id":"3",
+  "Priority":"Normal",
+  "Summary":"Course. Create. Course created with '0' number of lessons",
+  "Preconditions":
+  {
+	"1":"Sign in SuperAdmin permissions",
+	"2":"Prepare test data"
+  },
+  "Steps to reproduce":
+  {
+	"1":"Open the 'Course' page",
+	"2":"Click on the 'Create course' button",
+	"3":"Enter a course name of length [1;50] with Russian and Latin characters, lowercase and uppercase characters, with a range [1;9] number and special character (- ! # $ % & ‘ * + – / = ? ^ _ ` . { | } ~)",
+	"4":"Click on 'Teacher' field and choose any existing teacher", 
+	"5":"Choose any date in 'Course start date' field",
+	"6":"Mark the name of the selected days in the 'Days of the week' field",
+	"7":"Choose [1;3] in 'Lesson duration' field",
+	"8":"Click on 'Location' field and choose any existing lication",
+	"9":"Click on the 'Start time' field and choose any time",
+	"10":"Enter '0' in 'Number of lessons' field",
+	"11":"Click on the 'Add' button"
+  },
+  "Actual result":
+  {
+	"1":"Error'IntegrityError at /courses/new/'.'UNIQUE constraint failed: course_lesson.location_id, course_lesson.date, course_lesson.start_time'",
+	"2":"Course created with invalid data.('0' number of lessons)",
+	"3":"Also when you enter '-1' in 'Number of lessons' field you see error 'Значение должно быть больше или равно 0'"
+  },
+  "Expected result":"A course should not be created with '0' number of lessons"
+}
