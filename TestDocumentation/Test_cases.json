@@ -140,23 +140,24 @@
   "Title":"POST /api/v1/courses/ (As a SuperAdmin)",
   "Steps":
   {
-    "1":{
-  "days_of_week": [
-    2, 7
-  ],
-  "course_name": "any 1 lowercase letter",
-  "start_date": "today date",
-  "start_day_of_week": "today name date",
-  "lesson_duration": 1,
-  "start_time": "[08:00;21:00]",
-  "end_time": "start time + lesson duration",
-  "number_of_lessons": 2,
-  "course_type": "1 letter",
-  "is_active": true,
-  "teacher": 1,
-  "location": 1,
-  "start_time_options": null
-		}
+    "1":
+	{
+		"days_of_week": [
+			2, 7
+			],
+		"course_name": "any 1 lowercase letter",
+		"start_date": "today date",
+		"start_day_of_week": "today name date",
+		"lesson_duration": 1,
+		"start_time": "[08:00;21:00]",
+		"end_time": "start time + lesson duration",
+		"number_of_lessons": 2,
+		"course_type": "1 letter",
+		"is_active": true,
+		"teacher": 1,
+		"location": 1,
+		"start_time_options": null
+	}
   },
   "Expected result":
   {
