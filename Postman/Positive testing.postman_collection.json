@@ -1,0 +1,207 @@
+{
+	"info": {
+		"_postman_id": "ac7e224b-d5b7-4b20-889a-8279b4a328b7",
+		"name": "Positive testing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19629734"
+	},
+	"item": [
+		{
+			"name": "add_project",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var responseInJson = pm.response.json();\r",
+							"\r",
+							"//var projectID = responseInJson.id;\r",
+							"var projectName = responseInJson.name;\r",
+							"var projectAnnouncement = responseInJson.announcement;\r",
+							"\r",
+							"//console.log(\"projectID: \" + projectID);\r",
+							"console.log(\"projectName: \" + projectName);\r",
+							"console.log(\"projectAnnouncement: \" + projectAnnouncement);\r",
+							"\r",
+							"pm.collectionVariables.set(\"projectID\", responseInJson.id);\r",
+							"console.log(\"projectID: \" + pm.collectionVariables.get(\"projectID\"));\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 500ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(550);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Test the name and announcement of the project\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.eql(pm.iterationData.get(\"name\"));\r",
+							"    pm.expect(jsonData.announcement).to.eql(pm.iterationData.get(\"announcement\"));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"{{name}}\",\r\n    \"announcement\": \"{{announcement}}\",\r\n    \"show_announcement\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/{{api}}/add_project",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"{{api}}",
+						"add_project"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update_project",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 650ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(650);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Check update name and announcement\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.eql(pm.iterationData.get(\"updated_name\"));\r",
+							"    pm.expect(jsonData.announcement).to.eql(pm.iterationData.get(\"updated_announcement\"));\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"{{updated_name}}\",\r\n    \"announcement\": \"{{updated_announcement}}\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{base_url}}/{{api}}/update_project/{{projectID}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"{{api}}",
+						"update_project",
+						"{{projectID}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete_project",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 550ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(550);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/{{api}}/delete_project/{{projectID}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"{{api}}",
+						"delete_project",
+						"{{projectID}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "{{password}}",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "{{email}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "projectID",
+			"value": ""
+		}
+	]
+}
